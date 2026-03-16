@@ -1,3 +1,5 @@
+"use client"
+
 import Navbar from "./components/Navbar";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -25,8 +27,16 @@ const TechStack = {
 }`;
 
 export default function Home() {
+
   return (
-    <main className="min-h-screen bg-[#030411] text-slate-100 flex flex-col pb-20">
+    <main className="relative min-h-screen text-slate-100 flex flex-col pb-20 overflow-hidden bg-[#020617] lenis lenis-smooth lenis-scrolling">
+      {/* Glow backgrounds */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-40 -left-32 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl" />
+        <div className="absolute top-40 -right-24 h-96 w-96 rounded-full bg-blue-600/25 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.12),transparent_55%),radial-gradient(circle_at_bottom,rgba(30,64,175,0.18),transparent_55%)]" />
+      </div>
+
       <div className="max-w-6xl mx-auto w-full px-4 py-12 mt-40 md:py-16">
         {/* Hero */}
         <section className="flex flex-col md:flex-row gap-10 md:gap-16 items-start md:items-center">
@@ -43,7 +53,7 @@ export default function Home() {
               </p>
 
               <div className="mt-5 flex item-center gap-5 mb-12">
-                <a className="flex items-end border-2 w-fit px-3 py-1 rounded-full font-semibold bg-sky-50 text-black gap-1 text-lg" href="/cv_Arthur_Rocha.pdf" download="cv_Arthur_Rocha.pdf" target="_blank"><BiDownload size={23}/> 
+                <a className="flex items-end border-2 w-fit px-3 py-1 rounded-full font-semibold bg-sky-50 text-black gap-1 text-lg hover:bg-slate-300 transition" href="/cv_Arthur_Rocha.pdf" download="cv_Arthur_Rocha.pdf" target="_blank"><BiDownload size={23}/> 
                   Baixar CV
                 </a>
                 <a href="https://github.com/zinfex" target="_blank" className="flex items-center w-fit px-3 py-1 rounded-full font-semibold hover:bg-sky-50 text-white hover:text-black gap-1 transition text-lg">
@@ -97,10 +107,58 @@ export default function Home() {
 
         <Projects />
 
+        {/* Contato */}
+        <section id="contato" className="mt-24 md:mt-32 space-y-8">
+          <div className="space-y-2">
+            <h2 className="text-lg md:text-2xl font-semibold tracking-tight">
+              Vamos conversar
+            </h2>
+            <p className="text-sm md:text-base text-slate-300 max-w-2xl">
+              Aberto para oportunidades, projetos freelas e conexões na área de tecnologia.
+              Sinta-se à vontade para entrar em contato pelos canais abaixo.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1.4fr)]">
+            {/* Info de contato */}
+            <div className="space-y-4">
+              <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 md:p-5">
+                <h3 className="text-sm font-semibold text-slate-100 mb-3">
+                  Informações de contato
+                </h3>
+                <ul className="space-y-3 text-sm text-slate-300">
+                  <li>
+                    <span className="block text-xs uppercase tracking-wide text-slate-400">
+                      Telefone
+                    </span>
+                    <span className="font-medium">
+                      (85) 99698-9310
+                    </span>
+                  </li>
+                  <li>
+                    <span className="block text-xs uppercase tracking-wide text-slate-400">
+                      E-mail
+                    </span>
+                    <span className="font-medium">
+                      zinfegr@gmail.com
+                    </span>
+                  </li>
+                  <li>
+                    <span className="block text-xs uppercase tracking-wide text-slate-400">
+                      Localização
+                    </span>
+                    <span className="font-medium">
+                      Fortaleza, CE · Brasil
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       <Navbar />
-      
     </main>
   );
 }
