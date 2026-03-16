@@ -1,65 +1,106 @@
-import Image from "next/image";
+import Navbar from "./components/Navbar";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { BiDownload } from "react-icons/bi";
+import Projects from "./sections/Projects";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa6";
+import StackIcons from "./components/StacksIcons";
+
+
+const code = `// Full-Stack Developer Profile
+const FullStackDeveloper = {
+  name: "Arthur Rocha",
+  role: "Full Stack Developer",
+  experience: "2+ years",
+  location: "Fortaleza, CE",
+  birth: "07 de Novembro, 2005",
+}
+
+const TechStack = {
+  frontend: ["React", "Next.js", "TailwindCSS"],
+  backend: ["Node.js", "Express", "N8N"], 
+  database: ["PostgreSQL", "MongoDB"],
+  tools: ["Git", "Docker", "AWS", "Jest"],
+}`;
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="min-h-screen bg-[#030411] text-slate-100 flex flex-col pb-20">
+      <div className="max-w-6xl mx-auto w-full px-4 py-12 mt-40 md:py-16">
+        {/* Hero */}
+        <section className="flex flex-col md:flex-row gap-10 md:gap-16 items-start md:items-center">
+          {/* Left side - intro */}
+          <div className="flex-1 space-y-6 justify-center">
+            <div className="space-y-2">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
+                Arthur Rocha
+              </h1>
+              <p className="text-base md:text-lg text-slate-300 max-w-xl">
+                Desenvolvedor <span className="font-semibold">Full Stack</span> com mais de{" "}
+                <span className="font-semibold">2 anos de experiência</span> construindo aplicações web
+                modernas e performáticas.
+              </p>
+
+              <div className="mt-5 flex item-center gap-5 mb-12">
+                <a className="flex items-end border-2 w-fit px-3 py-1 rounded-full font-semibold bg-sky-50 text-black gap-1 text-lg" href="/cv_Arthur_Rocha.pdf" download="cv_Arthur_Rocha.pdf" target="_blank"><BiDownload size={23}/> 
+                  Baixar CV
+                </a>
+                <a href="https://github.com/zinfex" target="_blank" className="flex items-center w-fit px-3 py-1 rounded-full font-semibold hover:bg-sky-50 text-white hover:text-black gap-1 transition text-lg">
+                  <FaGithub/>
+                  Github
+                </a>
+                <a href="https://www.linkedin.com/in/rocha-dev/" target="_blank" className="flex items-center w-fit px-3 py-1 rounded-full font-semibold hover:bg-sky-50 text-white hover:text-black gap-1 transition text-lg">
+                  <FaLinkedin/>
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+
+            <StackIcons />
+          </div>
+
+          {/* Right side - VSCode like box */}
+          <div className="flex-1 w-full">
+            <div className="rounded-xl border border-slate-800 bg-[#2d2d3d] shadow-2xl shadow-sky-900/40 overflow-hidden">
+              {/* Window header */}
+              <div className="flex items-center justify-between px-4 py-2 border-b border-slate-800 bg-[#2d2d3d]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+                </div>
+                <div className="flex-1 flex items-center justify-center gap-2 text-xs text-slate-300">
+                  <span className="text-sky-400">developer.ts</span>
+                  <span className="text-slate-500">•</span>
+                  <span>TypeScript</span>
+                </div>
+                <span className="text-[10px] text-slate-500 font-mono">
+                  VSCode
+                </span>
+              </div>
+              <SyntaxHighlighter
+                language="typescript"
+                style={vscDarkPlus}
+                customStyle={{
+                  background: "transparent",
+                  padding: "20px",
+                  fontSize: "14px"
+                }}
+              >
+                {code}
+              </SyntaxHighlighter>
+             
+            </div>
+          </div>
+        </section>
+
+        <Projects />
+
+      </div>
+
+      <Navbar />
+      
+    </main>
   );
 }
