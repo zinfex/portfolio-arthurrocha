@@ -29,3 +29,11 @@ body {
     "Segoe UI",
     sans-serif;
 }
+
+.mapa {
+  border-radius: 20px;
+  border: 0px; 
+  margin-top: 10px;
+  filter: grayscale(1) invert(1); 
+  z-index: 0;
+}

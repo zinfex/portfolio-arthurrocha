@@ -9,14 +9,6 @@ export default function Projects() {
       link: "https://github.com/zinfex/taskmind", 
     },
     {
-      title: "StatusHook",
-      description:
-        "Aplicação na qual o usuário cadastra suas automações de diversas plataformas e monitora o desempenho de cada uma.",
-      techs: ["React", "Node.js", "MongoDB", "Docker", "N8N"],
-      imageUrl: "/projects/statushook.webp",
-      link: "https://github.com/zinfex/statushook-opensource",
-    },
-    {
       title: "Askwise",
       description:
         "Sistema de criação e exibição de formulários modernos e agradáveis, com ótima funcionalidade.",
@@ -24,6 +16,14 @@ export default function Projects() {
       imageUrl: "/projects/askwise.png",
       link: "https://github.com/zinfex/Askwise",
     },
+    {
+      title: "StatusHook",
+      description:
+        "Aplicação na qual o usuário cadastra suas automações de diversas plataformas e monitora o desempenho de cada uma.",
+      techs: ["React", "Node.js", "MongoDB", "Docker", "N8N"],
+      imageUrl: "/projects/statushook.webp",
+      link: "https://github.com/zinfex/statushook-opensource",
+    }
   ];
   
   return (
