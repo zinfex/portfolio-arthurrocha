@@ -9,6 +9,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import StackIcons from "./components/StacksIcons";
 import Contato from "./sections/Contato";
+import Link from "next/link";
 
 
 const code = `// Full-Stack Developer Profile
@@ -45,9 +46,9 @@ export default function Home() {
           <div className="flex-1 space-y-6 justify-center">
             <div className="space-y-2">
             <img src="picture.png" className="w-20 border-2 rounded-full" alt="avatar" />
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
-                Arthur Rocha
-              </h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+              Arthur Rocha<span className="cursor">|</span>
+            </h1>
               <p className="text-base md:text-lg text-slate-300 max-w-xl">
                 Desenvolvedor <span className="font-semibold">Full Stack</span> com mais de{" "}
                 <span className="font-semibold">2 anos de experiência</span> construindo aplicações web
@@ -55,17 +56,17 @@ export default function Home() {
               </p>
 
               <div className="mt-5 flex item-center gap-5 mb-12">
-                <a className="flex items-end border-2 w-fit px-3 py-1 rounded-full font-semibold bg-sky-50 text-black gap-1 text-lg hover:bg-slate-300 transition" href="/cv_Arthur_Rocha.pdf" download="cv_Arthur_Rocha.pdf" target="_blank"><BiDownload size={23}/> 
+                <Link className="flex items-end border-2 w-fit px-3 py-1 rounded-full font-semibold bg-sky-50 text-black gap-1 text-lg hover:bg-slate-300 transition" href="/cv_Arthur_Rocha.pdf" download="cv_Arthur_Rocha.pdf" target="_blank"><BiDownload size={23}/> 
                   Baixar CV
-                </a>
-                <a href="https://github.com/zinfex" target="_blank" className="flex items-center w-fit px-3 py-1 rounded-full font-semibold hover:bg-sky-50 text-white hover:text-black gap-1 transition text-lg">
+                </Link>
+                <Link href="https://github.com/zinfex" target="_blank" className="flex items-center w-fit px-3 py-1 rounded-full font-semibold hover:bg-sky-50 text-white hover:text-black gap-1 transition text-lg">
                   <FaGithub/>
                   Github
-                </a>
-                <a href="https://www.linkedin.com/in/rocha-dev/" target="_blank" className="flex items-center w-fit px-3 py-1 rounded-full font-semibold hover:bg-sky-50 text-white hover:text-black gap-1 transition text-lg">
+                </Link>
+                <Link href="https://www.linkedin.com/in/rocha-dev/" target="_blank" className="flex items-center w-fit px-3 py-1 rounded-full font-semibold hover:bg-sky-50 text-white hover:text-black gap-1 transition text-lg">
                   <FaLinkedin/>
                   LinkedIn
-                </a>
+                </Link>
               </div>
             </div>
 

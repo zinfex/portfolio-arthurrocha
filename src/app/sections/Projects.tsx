@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
@@ -81,23 +83,23 @@ export default function Projects() {
                 {/* Link opcional */}
                 <div className="flex justify-between mt-5">
                   {project.link && (
-                    <a
+                    <Link
                       href={project.link}
                       target="_blank"
                       className="text-sm text-sky-400 hover:text-sky-200 transition flex items-center gap-1"
                     >
                       <FaGithub/> Repositório no Github
-                    </a>
+                    </Link>
                   )}
 
                   {project.link && (
-                    <a
+                    <Link
                       href={project.deploy}
                       target="_blank"
                       className="text-sm text-sky-400 hover:text-sky-200 transition flex items-center gap-1"
                     >
                       <FaExternalLinkAlt /> Ver projeto
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
