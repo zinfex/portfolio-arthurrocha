@@ -12,8 +12,7 @@ import Contato from "./sections/Contato";
 import Link from "next/link";
 
 
-const code = `// Full-Stack Developer Profile
-const FullStackDeveloper = {
+const code = `const FullStackDeveloper = {
   name: "Arthur Rocha",
   role: "Full Stack Developer",
   experience: "2+ years",
@@ -45,7 +44,7 @@ export default function Home() {
           {/* Left side - intro */}
           <div className="flex-1 space-y-6 justify-center">
             <div className="space-y-2">
-            <img src="picture.png" className="w-20 border-2 rounded-full" alt="avatar" />
+            <img src="avatar.png" className="w-20 rounded-full" alt="avatar" />
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
               Arthur Rocha<span className="cursor">|</span>
             </h1>
@@ -92,17 +91,19 @@ export default function Home() {
                   VSCode
                 </span>
               </div>
-              <SyntaxHighlighter
-                language="typescript"
-                style={vscDarkPlus}
-                customStyle={{
-                  background: "transparent",
-                  padding: "20px",
-                  fontSize: "14px"
-                }}
-              >
-                {code}
-              </SyntaxHighlighter>
+              <div className="code">
+                <SyntaxHighlighter
+                  language="typescript"
+                  style={vscDarkPlus}
+                  customStyle={{
+                    background: "transparent",
+                    padding: "20px",
+                    fontSize: "15px"
+                  }}
+                >
+                  {code}
+                </SyntaxHighlighter>
+              </div>
              
             </div>
           </div>

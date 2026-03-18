@@ -65,3 +65,13 @@ body {
   margin-left: 3px;
   animation: blink 2s infinite;
 }
+
+.onlineball {
+  display: inline-block;
+  margin-left: 3px;
+  animation: blink 3s infinite;
+}
+
+.code span{
+  font-size: 1px;
+}

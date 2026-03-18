@@ -1,34 +1,44 @@
+import Link from "next/link";
 import { BsHouse } from "react-icons/bs";
 import { FaRegUser, FaRegEnvelopeOpen } from "react-icons/fa";
 import { GrArticle } from "react-icons/gr";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-10 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center gap-2 p-2 rounded-full 
-      bg-[#191826]/60 backdrop-blur-md shadow-lg">
+    <div className="top-6 z-50 flex justify-between">
+      <img src="picture.png" className="w-15 fixed left-6 top-6 border-2 border-sky-800/60 rounded-full" alt="picture" />
 
-        <a href="#" className="flex items-center gap-2 px-3 py-2  rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
-          <BsHouse className="text-lg" />
-          <span>Início</span>
-        </a>
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+        <div className="flex items-center gap-4 p-2 rounded-full border-1 border-blue-400/40
+        bg-[#16223c]/60 backdrop-blur-md shadow-lg">
 
-        <a href="#sobre" className="flex items-center gap-2 px-3 py-2 rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
-          <FaRegUser className="text-lg" />
-          <span>Sobre</span>
-        </a>
+          <a href="#" className="flex items-center gap-2 px-3 py-2 rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
+            <BsHouse className="text-md" />
+            <span className="text-[15px]">Início</span>
+          </a>
 
-        <a href="#artigos" className="flex items-center gap-2 px-3 py-2  rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
-          <GrArticle className="text-lg" />
-          <span>Artigos</span>
-        </a>
+          <a href="#sobre" className="flex items-center gap-2 px-3 py-2 rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
+            <FaRegUser className="text-md" />
+            <span className="text-[15px]">Sobre</span>
+          </a>
 
-        <a href="#contato" className="flex items-center gap-2 px-3 py-2  rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
-          <FaRegEnvelopeOpen className="text-lg" />
-          <span>Contato</span>
-        </a>
+          <a href="#artigos" className="flex items-center gap-2 px-3 py-2 rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
+            <GrArticle className="text-md" />
+            <span className="text-[15px]">Artigos</span>
+          </a>
 
-      </div>  
-    </nav>
+          <a href="#contato" className="flex items-center gap-2 px-3 py-2 rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
+            <FaRegEnvelopeOpen className="text-md" />
+            <span className="text-[15px]">Contato</span>
+          </a>
+
+        </div>  
+      </nav>
+
+      <div className="fixed right-6 top-8 flex items-center gap-3 p-2 px-6 rounded-full border-1 border-emerald-400
+        bg-[#16223c]/60 backdrop-blur-md shadow-lg text-green-400">
+          <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 onlineball" /> Online
+      </div>
+    </div>
   );
 }
