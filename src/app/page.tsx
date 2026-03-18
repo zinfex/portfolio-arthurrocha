@@ -44,6 +44,7 @@ export default function Home() {
           {/* Left side - intro */}
           <div className="flex-1 space-y-6 justify-center">
             <div className="space-y-2">
+            <img src="picture.png" className="w-20 border-2 rounded-full" alt="avatar" />
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
                 Arthur Rocha
               </h1>
@@ -72,7 +73,7 @@ export default function Home() {
           </div>
 
           {/* Right side - VSCode like box */}
-          <div className="flex-1 w-full">
+          <div className="flex-1 w-full float-diagonal">
             <div className="rounded-xl border border-slate-800 bg-[#2d2d3d] shadow-2xl shadow-sky-900/40 overflow-hidden">
               {/* Window header */}
               <div className="flex items-center justify-between px-4 py-2 border-b border-slate-800 bg-[#2d2d3d]">
