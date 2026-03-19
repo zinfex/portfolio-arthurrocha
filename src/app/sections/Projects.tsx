@@ -38,7 +38,7 @@ export default function Projects() {
     <section className="mt-16 md:mt-20 space-y-6" >
       {/* Título */}
       <div className="space-y-2">
-        <h2 className="text-lg md:text-2xl font-semibold tracking-tight" id="projetos">
+        <h2 className="text-lg md:text-2xl font-semibold tracking-tight" >
           Meus projetos
         </h2>
         <p className="text-sm md:text-base text-slate-400 max-w-2xl">

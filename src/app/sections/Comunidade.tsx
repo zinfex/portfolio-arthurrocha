@@ -53,6 +53,7 @@ export default function Comunidade() {
           href="https://linktr.ee/arthurochaz" 
           target="_blank"
           rel="noopener noreferrer"
+          id="projetos"
           className="flex items-center gap-2 px-8 py-3 rounded-full font-bold bg-sky-50 text-black hover:bg-slate-200 transition-all shadow-[0_0_20px_rgba(240,249,255,0.3)] hover:scale-105 active:scale-95"
         >
           <FaUsers size={20} />

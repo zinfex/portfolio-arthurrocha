@@ -34,9 +34,15 @@ export default function Home() {
   return (
     <main className="relative min-h-screen text-slate-100 flex flex-col bg-[#020617]">
       {/* Glow backgrounds */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -left-32 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl" />
         <div className="absolute top-40 -right-24 h-96 w-96 rounded-full bg-blue-600/25 blur-3xl" />
+        
+        {/* Bottom blurs */}
+        <div className="absolute bottom-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-sky-600/10 blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[-5%] h-[600px] w-[600px] rounded-full bg-blue-500/15 blur-[100px]" />
+        <div className="absolute bottom-[-20%] left-[30%] h-[400px] w-[400px] rounded-full bg-indigo-500/10 blur-[100px]" />
+        
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.12),transparent_55%),radial-gradient(circle_at_bottom,rgba(30,64,175,0.18),transparent_55%)]" />
       </div>
 
