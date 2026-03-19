@@ -51,7 +51,7 @@ export default function Projects() {
         {projects.map((project, index) => (
           <Link key={index} href={project.deploy} target="_blank">
             <article
-              className="group rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden hover:border-sky-500/70 hover:bg-slate-900/90 transition-transform duration-300 ease-in-out hover:-translate-y-3 flex flex-col justify-end"
+              className="group rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden hover:border-sky-500/70 transition-transform  duration-300 ease-in-out hover:-translate-y-3 flex flex-col justify-end"
             >
               {/* Imagem no topo */}
               <img
@@ -84,6 +84,16 @@ export default function Projects() {
                 <div className="flex justify-between mt-5">
                   {project.link && (
                     <Link
+                      href={project.deploy}
+                      target="_blank"
+                      className="text-sm text-sky-400 hover:text-sky-200 transition flex items-center gap-1"
+                    >
+                      <FaExternalLinkAlt /> Ver projeto
+                    </Link>
+                  )}
+
+                  {project.link && (
+                    <Link
                       href={project.link}
                       target="_blank"
                       className="text-sm text-sky-400 hover:text-sky-200 transition flex items-center gap-1"
@@ -92,15 +102,6 @@ export default function Projects() {
                     </Link>
                   )}
 
-                  {project.link && (
-                    <Link
-                      href={project.deploy}
-                      target="_blank"
-                      className="text-sm text-sky-400 hover:text-sky-200 transition flex items-center gap-1"
-                    >
-                      <FaExternalLinkAlt /> Ver projeto
-                    </Link>
-                  )}
                 </div>
               </div>
             </article>

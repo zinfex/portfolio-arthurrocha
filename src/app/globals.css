@@ -28,8 +28,16 @@ body {
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+  overflow-x: hidden;
+  position: relative;
 }
 
+@media(max-width: 1000px) {
+  main {
+    overflow-x: hidden;
+  }
+}
+ 
 .mapa {
   border-radius: 20px;
   border: 0px; 

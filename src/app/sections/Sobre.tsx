@@ -1,0 +1,485 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import { MdLocationOn } from "react-icons/md";
+import { HiOutlineSparkles } from "react-icons/hi2";
+
+type NavItem = { id: string; label: string };
+
+const NAV_ITEMS: NavItem[] = [
+  { id: "introducao", label: "Introdução" },
+  { id: "experiencia", label: "Experiência" },
+  { id: "certificacoes", label: "Certificações" },
+  { id: "expertise", label: "Expertise Técnica" },
+];
+
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+export default function Sobre() {
+  const [activeId, setActiveId] = useState<string>(NAV_ITEMS[0].id);
+  const [visible, setVisible] = useState<Record<string, boolean>>({});
+
+  const timeline = useMemo(
+    () => [
+    {
+        id: "exp-1",
+        company: "Freelancer de Projetos    ",
+        role: "Full Stack Developer",
+        period: "2026 | Atualmente",
+        bullets: [
+            "Desenvolvimento de aplicações SAAS.",
+            "N8N: Manutenção e criação de automações e agentes de IA.",
+            "Refino de UI com design system e componentes reutilizáveis.",
+        ],
+        tech: ["React", "Next.js", "Node.js", "N8N", "Typescript", "Docker"],
+        },
+      {
+        id: "exp-2",
+        company: "Chat2Desk Brasil",
+        role: "Analista de Automações com IA",
+        period: "2025 | Outubro - Dezembro",
+        bullets: [
+          "Responsável por atendimento de Tickets e melhorias.",
+          "N8N: Manutenção e criação de automações e agentes de IA.",
+          "Soluções com IA e arquitetura RAG",
+          "Integração com o banco Supabase",
+          "API's de mensageria | Typescript & Nodejs."
+        ],
+        tech: ["React", "Next.js", "Node.js", "PostgreSQL", "AWS"],
+      },
+      {
+        id: "exp-3",
+        company: "085 Digital",
+        role: "Full Stack Developer",
+        period: "2024 | Janeiro - 2025 | Outubro",
+        bullets: [
+        "Responsável por criações e atualizações de aplicações SAAS da empresa.",
+        "Integrações de APIs e modelagem de dados para escalabilidade.",
+        "UI/UX Design: Interfaces intuitivas e visualmente atrativas.",
+        "N8N: Criação de agentes de IA e automações.",
+        "Gestão de automações.",
+        "Sistemas com integração com API's de marketing."
+        ],
+        tech: ["React", "Next.js", "Node.js", "N8N", "Typescript", "Easypanel"],
+      },
+    ],
+    [],
+  );
+
+  const certifications = useMemo(
+    () => [
+      {
+        id: "cert-1",
+        name: "Curso presencial Desenvolvedor Fullstack",
+        institution: "iwtraining educação avançada",
+        badge: "Fullstack",
+      },
+      {
+        id: "cert-2",
+        name: "Back End Development and APIs",
+        institution: "freeCodeCamp",
+        badge: "Back-End",
+      },
+      {
+        id: "cert-3",
+        name: "Programming Using JavaScript",
+        institution: "Curso em Vídeo",
+        badge: "Javascript 40h",
+      },
+      {
+        id: "cert-4",
+        name: "Desenvolvimento com Gemini IA",
+        institution: "Alura",
+        badge: "LLM",
+      },
+    ],
+    [],
+  );
+
+  const expertise = useMemo(
+    () => [
+      {
+        title: "Linguagens",
+        items: ["TypeScript", "JavaScript", "Python"],
+      },
+      {
+        title: "Frameworks",
+        items: ["React", "Next.js", "Express", "Framework"],
+      },
+      {
+        title: "Banco de Dados",
+        items: ["PostgreSQL", "MongoDB", "Supabase", "MySQL"],
+      },
+      {
+        title: "Testes & Qualidade",
+        items: ["Jest", "Boas práticas", "Revisões", "Swagger"],
+      },
+      {
+        title: "CI/CD & DevOps",
+        items: ["GitHub Actions", "Docker"],
+      },
+      {
+        title: "Integrações",
+        items: ["Webhooks", "APIs REST", "Queues"],
+      },
+    ],
+    [],
+  );
+
+  useEffect(() => {
+    const sectionEls = NAV_ITEMS.map((it) =>
+      document.getElementById(it.id),
+    ).filter(Boolean) as HTMLElement[];
+    const revealEls = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal]"),
+    );
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = (entry.target as HTMLElement).dataset.reveal;
+          if (!id) return;
+          setVisible((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15 },
+    );
+
+    revealEls.forEach((el) => revealObserver.observe(el));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const intersecting = entries
+          .filter((e) => e.isIntersecting)
+          .sort(
+            (a, b) => (b.intersectionRect.height ?? 0) - (a.intersectionRect.height ?? 0),
+          );
+        const top = intersecting[0];
+        if (!top?.target) return;
+        const id = (top.target as HTMLElement).id;
+        if (id) setActiveId(id);
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: [0, 0.15, 0.25, 0.4] },
+    );
+
+    sectionEls.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealObserver.disconnect();
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <section id="sobre" className="mt-28 md:mt-36 scroll-mt-28">
+      <div className="w-full py-10 md:py-16 relative">
+        <div className="grid gap-10 md:grid-cols-[280px_minmax(0,1fr)] items-start">
+          {/* Sidebar */}
+          <aside className="hidden md:block sticky top-64 self-start">
+            {/* Mobile menu (colapsável) */}
+            <div className="md:hidden mb-4">
+              <details className="group rounded-xl border border-slate-800 bg-slate-900/40">
+                <summary className="list-none cursor-pointer px-4 py-3 text-sm font-medium text-slate-200">
+                  Menu
+                </summary>
+                <div className="px-3 pb-4">
+                  <nav className="space-y-2">
+                    {NAV_ITEMS.map((item) => {
+                      const isActive = item.id === activeId;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => {
+                            setActiveId(item.id);
+                            scrollToId(item.id);
+                          }}
+                          className={[
+                            "w-full text-left rounded-lg px-3 py-2 transition-all border border-transparent",
+                            isActive
+                              ? "bg-sky-500/10 text-sky-200 border-sky-400/70 shadow-[0_0_18px_rgba(56,189,248,0.25)] border-l-2 pl-4"
+                              : "text-slate-400 hover:text-slate-100 hover:bg-white/5 hover:border-white/5",
+                          ].join(" ")}
+                        >
+                          {item.label}
+                        </button>
+                      );
+                    })}
+                  </nav>
+                </div>
+              </details>
+            </div>
+
+            <div className="hidden md:block rounded-2xl backdrop-blur-md p-4">
+              {/* Profile */}
+              <div className="flex flex-col items-center text-center space-y-4 pb-4 border-b border-slate-800">
+                <div className="relative">
+                  <div className="absolute -inset-2 rounded-full bg-sky-500/10 blur-md" />
+                  <div className="relative h-20 w-20 rounded-full  ring-1 ring-slate-700/60 shadow-[0_0_40px_rgba(56,189,248,0.12)]">
+                    <Image
+                      src="/picture.png"
+                      alt="Foto de perfil"
+                      width={80}
+                      height={80}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-sm font-semibold text-slate-100">
+                    Arthur Rocha
+                  </div>
+                  <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
+                    <MdLocationOn className="text-sky-400" />
+                    Fortaleza, CE
+                  </div>
+                </div>
+              </div>
+
+              {/* Nav */}
+              <nav className="mt-4 space-y-2">
+                {NAV_ITEMS.map((item) => {
+                  const isActive = item.id === activeId;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => {
+                        setActiveId(item.id);
+                        scrollToId(item.id);
+                      }}
+                      className={[
+                        "w-full flex items-center gap-3 px-3 py-2 rounded-xl transition-all border border-transparent",
+                        isActive
+                          ? "bg-sky-500/10 border-sky-400/70 text-sky-200 border-l-2 pl-4"
+                          : "text-slate-400 hover:text-slate-100 hover:bg-white/5 hover:border-white/5",
+                      ].join(" ")}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      <span
+                        className={[
+                          "h-2 w-2 rounded-full transition-all",
+                          isActive
+                            ? "bg-sky-400 shadow-[0_0_18px_rgba(56,189,248,0.45)]"
+                            : "bg-slate-500/60",
+                        ].join(" ")}
+                      />
+                      <span className="text-sm">{item.label}</span>
+                      <span className="ml-auto" aria-hidden>
+                        {isActive ? (
+                          <HiOutlineSparkles className="text-sky-400" />
+                        ) : null}
+                      </span>
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
+          </aside>
+
+          {/* Content */}
+          <div className="space-y-10">
+            {/* Header */}
+            <header className="space-y-4">
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center gap-3">
+                  <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                    Quem sou eu?
+                  </h2>
+                </div>
+                <p className="text-slate-300 text-base md:text-lg">
+                  Desenvolvedor{" "}
+                  <span className="font-semibold text-sky-400">
+                    Full Stack & Analista de Automações com IA
+                  </span>
+                </p>
+              </div>
+            </header>
+
+            {/* Introdução */}
+            <section id="introducao" className="space-y-4 scroll-mt-28">
+              <div
+                data-reveal="intro"
+                className={[
+                  visible.intro
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4",
+                  "transition-all duration-700 ease-out ",
+                ].join(" ")}
+              >
+                <p className="text-slate-300 leading-relaxed">
+                  Eu sou o Arthur Rocha, desenvolvedor Full Stack. Meu objetivo
+                  é transformar requisitos em interfaces claras, arquiteturas
+                  sustentáveis e sistemas que funcionam bem em produção.
+                </p>
+                
+              </div>
+            </section>
+
+
+            {/* Experiência*/}
+            <section id="experiencia" className="scroll-mt-58" > 
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="text-lg md:text-xl font-semibold text-sky-400">
+                    | Experiência Profissional
+                  </h3>
+                </div>
+
+                <div className="relative">
+                  {timeline.map((item) => (
+                    <div
+                      key={item.id}
+                      className="relative pl-10 md:pl-12 pb-10 last:pb-0"
+                      data-reveal={item.id}
+                    >
+                      <div
+                        className="absolute left-5 top-2 h-full w-0.5 bg-slate-800"
+                        aria-hidden
+                      />
+                      <div
+                        className={[
+                          "absolute left-3.5 top-2 h-3.5 w-3.5 rounded-full bg-sky-400",
+                          "shadow-[0_0_22px_rgba(56,189,248,0.35)]",
+                        ].join(" ")}
+                        aria-hidden
+                      />
+
+                      <div
+                        className={[
+                          visible[item.id]
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-4",
+                          "transition-all duration-700 ease-out",
+                          "rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-5",
+                        ].join(" ")}
+                      >
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+                          <div className="space-y-1">
+                            <div className="text-sm uppercase tracking-wide text-slate-400">
+                              {item.company}
+                            </div>
+                            <div className="text-lg font-semibold text-slate-100">
+                              {item.role}
+                            </div>
+                            <div className="text-sm text-slate-400">
+                              {item.period}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="mt-4">
+                          <ul className="space-y-2 text-slate-300">
+                            {item.bullets.map((b) => (
+                              <li key={b} className="flex gap-3">
+                                <span className="mt-1 h-2 w-2 rounded-full bg-slate-400/60" />
+                                <span>{b}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="mt-4 grid gap-3 md:grid-cols-[auto_1fr] items-center">
+                          <div className="flex flex-wrap gap-2">
+                            {item.tech.map((t) => (
+                              <span
+                                key={t}
+                                className="rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs text-slate-200"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Certificações */}
+              <section  id="certificacoes" className="scroll-mt-28 space-y-4">
+                <h3 className="text-lg md:text-xl font-semibold text-sky-400">
+                  | Certificações
+                </h3>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  {certifications.map((c) => (
+                    <div
+                      key={c.id}
+                      data-reveal={c.id}
+                      className={[
+                        visible[c.id]
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-4",
+                        "transition-all duration-700 ease-out",
+                        "rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-5",
+                      ].join(" ")}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="text-sm font-semibold text-slate-100">
+                          {c.name}
+                        </div>
+                        <span className="rounded-full bg-sky-500/10 border border-sky-500/20 px-3 py-1 text-xs text-sky-200">
+                          {c.badge}
+                        </span>
+                      </div>
+                      <div className="mt-2 text-sm text-slate-400">
+                        {c.institution}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+            {/* Expertise Técnica */}
+            <section id="expertise" className="scroll-mt-28">
+              <div className="space-y-5">
+                <h3 className="text-lg md:text-xl font-semibold text-sky-400">
+                  | Expertise Técnica
+                </h3>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  {expertise.map((cat) => (
+                    <div
+                      key={cat.title}
+                      data-reveal={`ex-${cat.title}`}
+                      className={[
+                        visible[`ex-${cat.title}`]
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-4",
+                        "transition-all duration-700 ease-out",
+                        "rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-5",
+                      ].join(" ")}
+                    >
+                      <div className="text-sm uppercase tracking-wide text-slate-400">
+                        {cat.title}
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {cat.items.map((t) => (
+                          <span
+                            key={t}
+                            className="rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs text-slate-200"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

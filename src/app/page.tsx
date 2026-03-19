@@ -9,6 +9,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import StackIcons from "./components/StacksIcons";
 import Contato from "./sections/Contato";
+import Sobre from "./sections/Sobre";
 import Link from "next/link";
 
 
@@ -30,7 +31,7 @@ const TechStack = {
 export default function Home() {
 
   return (
-    <main className="relative min-h-screen text-slate-100 flex flex-col overflow-hidden bg-[#020617] lenis lenis-smooth lenis-scrolling">
+    <main className="relative min-h-screen text-slate-100 flex flex-col bg-[#020617]">
       {/* Glow backgrounds */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 -left-32 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl" />
@@ -108,6 +109,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <Sobre />
 
         <Projects />
 

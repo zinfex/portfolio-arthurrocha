@@ -5,6 +5,7 @@ import {
     SiNodedotjs,
     SiDocker,
     SiMongodb,
+    SiN8N,
   } from "react-icons/si";
   
   const techs = [
@@ -14,6 +15,7 @@ import {
     { icon: SiNodedotjs, name: "Node.js", bg: "bg-green-500/20", color: "text-green-400" },
     { icon: SiDocker, name: "Docker", bg: "bg-sky-500/20", color: "text-sky-400" },
     { icon: SiMongodb, name: "MongoDB", bg: "bg-emerald-500/20", color: "text-emerald-400" },
+    { icon: SiN8N, name: "N8N", bg: "bg-pink-500/20", color: "text-pink-400" },
   ];
   
   export default function StackIcons() {
