@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BsHouse } from "react-icons/bs";
 import { FaRegUser, FaRegEnvelopeOpen } from "react-icons/fa";
 import { GrArticle } from "react-icons/gr";
+import { RiNotificationBadgeLine } from "react-icons/ri";
 
 export default function Navbar() {
   return (
@@ -22,9 +23,9 @@ export default function Navbar() {
             <span className="text-[15px]">Sobre</span>
           </a>
 
-          <a href="#artigos" className="flex items-center gap-2 px-3 py-2 rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
-            <GrArticle className="text-md" />
-            <span className="text-[15px]">Artigos</span>
+          <a href="#projetos" className="flex items-center gap-2 px-3 py-2 rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
+            <RiNotificationBadgeLine className="text-md" />
+            <span className="text-[15px]">Projetos</span>
           </a>
 
           <a href="#contato" className="flex items-center gap-2 px-3 py-2 rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">

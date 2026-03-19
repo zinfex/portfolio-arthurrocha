@@ -75,24 +75,28 @@ export default function Sobre() {
     () => [
       {
         id: "cert-1",
+        img: "/certificacoes/curso1.jpg",
         name: "Curso presencial Desenvolvedor Fullstack",
         institution: "iwtraining educação avançada",
         badge: "Fullstack",
       },
       {
         id: "cert-2",
+        img: "/certificacoes/freecodecamp.png",
         name: "Back End Development and APIs",
         institution: "freeCodeCamp",
         badge: "Back-End",
       },
       {
         id: "cert-3",
+        img: "/certificacoes/javascript.jpg",
         name: "Programming Using JavaScript",
         institution: "Curso em Vídeo",
         badge: "Javascript 40h",
       },
       {
         id: "cert-4",
+        img: "/certificacoes/aws.jpg",
         name: "Desenvolvimento com Gemini IA",
         institution: "Alura",
         badge: "LLM",
@@ -222,21 +226,20 @@ export default function Sobre() {
               <div className="flex flex-col items-center text-center space-y-4 pb-4 border-b border-slate-800">
                 <div className="relative">
                   <div className="absolute -inset-2 rounded-full bg-sky-500/10 blur-md" />
-                  <div className="relative h-20 w-20 rounded-full  ring-1 ring-slate-700/60 shadow-[0_0_40px_rgba(56,189,248,0.12)]">
-                    <Image
-                      src="/picture.png"
+                  <div className="relative h-50 w-50 rounded-full  ring-1 ring-slate-700/60 shadow-[0_0_40px_rgba(56,189,248,0.12)] ">
+                    <img
+                      src="/trabalho.jpeg"
                       alt="Foto de perfil"
-                      width={80}
-                      height={80}
+                      className="rounded-4xl w-full"
                     />
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-sm font-semibold text-slate-100">
+                  <div className="text-lg font-semibold text-slate-100 mt-4">
                     Arthur Rocha
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
-                    <MdLocationOn className="text-sky-400" />
+                  <div className="flex items-center justify-center gap-2 text-xs text-slate-400 text-lg">
+                    <MdLocationOn className="text-sky-400 " />
                     Fortaleza, CE
                   </div>
                 </div>
@@ -410,7 +413,7 @@ export default function Sobre() {
                   | Certificações
                 </h3>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-4 md:grid-cols-2 w-full">
                   {certifications.map((c) => (
                     <div
                       key={c.id}
@@ -423,17 +426,23 @@ export default function Sobre() {
                         "rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-5",
                       ].join(" ")}
                     >
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="text-sm font-semibold text-slate-100">
-                          {c.name}
-                        </div>
-                        <span className="rounded-full bg-sky-500/10 border border-sky-500/20 px-3 py-1 text-xs text-sky-200">
-                          {c.badge}
-                        </span>
+                      <div className="flex flex-col justify-between gap-3 ">
+                        <img src={c.img} alt="curso" className="rounded-xl h-55 w-auto" />
+                        <div className="flex flex-col">
+                          
+                          <div className="text-sm font-semibold text-slate-100">
+                            {c.name}
+                          </div>
+                          <div className="mt-2 text-sm text-slate-400 flex justify-between">
+                            {c.institution}
+
+                            <span className="rounded-full bg-sky-500/10 border border-sky-500/20 px-3 py-1 text-xs text-sky-200 w-fit">
+                              {c.badge}
+                            </span>
+                          </div>
+                        </div>  
                       </div>
-                      <div className="mt-2 text-sm text-slate-400">
-                        {c.institution}
-                      </div>
+                      
                     </div>
                   ))}
                 </div>
@@ -456,7 +465,6 @@ export default function Sobre() {
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-4",
                         "transition-all duration-700 ease-out",
-                        "rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-5",
                       ].join(" ")}
                     >
                       <div className="text-sm uppercase tracking-wide text-slate-400">
