@@ -34,23 +34,23 @@ export default function Sobre() {
         bullets: [
             "Desenvolvimento de aplicações SAAS.",
             "N8N: Manutenção e criação de automações e agentes de IA.",
-            "Refino de UI com design system e componentes reutilizáveis.",
+            "Páginas Next.js conectadas com Backend e Banco de Dados",
         ],
         tech: ["React", "Next.js", "Node.js", "N8N", "Typescript", "Docker"],
         },
       {
         id: "exp-2",
         company: "Chat2Desk Brasil",
-        role: "Analista de Automações com IA",
+        role: "Analista de Automações com IA | Frontend",
         period: "2025 | Outubro - Dezembro",
         bullets: [
           "Responsável por atendimento de Tickets e melhorias.",
-          "N8N: Manutenção e criação de automações e agentes de IA.",
+          "Manutenção de automações e páginas da empresa com React, Node.js e N8N",
           "Soluções com IA e arquitetura RAG",
-          "Integração com o banco Supabase",
+          "Criação de Dashboards em Next.js e PostgresSQL.",
           "API's de mensageria | Typescript & Nodejs."
         ],
-        tech: ["React", "Next.js", "Node.js", "PostgreSQL", "AWS"],
+        tech: ["React", "Next.js", "Node.js", "PostgreSQL", "AWS", "N8N"],
       },
       {
         id: "exp-3",
@@ -58,14 +58,14 @@ export default function Sobre() {
         role: "Full Stack Developer",
         period: "2024 | Janeiro - 2025 | Outubro",
         bullets: [
-        "Responsável por criações e atualizações de aplicações SAAS da empresa.",
-        "Integrações de APIs e modelagem de dados para escalabilidade.",
-        "UI/UX Design: Interfaces intuitivas e visualmente atrativas.",
-        "N8N: Criação de agentes de IA e automações.",
-        "Gestão de automações.",
-        "Sistemas com integração com API's de marketing."
+          "Responsável por criações e atualizações de aplicações SAAS da empresa.",
+          "Criação de APIs de marketing, integradas a um banco de dados e CRM.",
+          "Desenvolvimento de +10 landing pages em React e Next.js para campanhas de anúncios.",
+          "N8N: Criação de agentes de IA e automações.",
+          "Gestão de automações.",
+          "Sistemas com integração com API's de marketing."
         ],
-        tech: ["React", "Next.js", "Node.js", "N8N", "Typescript", "Easypanel"],
+        tech: ["React", "Next.js", "Node.js", "N8N", "Typescript", "Easypanel", "Docker"],
       },
     ],
     [],

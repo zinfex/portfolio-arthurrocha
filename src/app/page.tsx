@@ -11,6 +11,7 @@ import StackIcons from "./components/StacksIcons";
 import Contato from "./sections/Contato";
 import Sobre from "./sections/Sobre";
 import Link from "next/link";
+import Comunidade from "./sections/Comunidade";
 
 
 const code = `const FullStackDeveloper = {
@@ -56,7 +57,7 @@ export default function Home() {
               </p>
 
               <div className="mt-5 flex item-center gap-5 mb-12">
-                <Link className="flex items-end border-2 w-fit px-3 py-1 rounded-full font-semibold bg-sky-50 text-black gap-1 text-lg hover:bg-slate-300 transition" href="/cv_Arthur_Rocha.pdf" download="cv_Arthur_Rocha.pdf" target="_blank"><BiDownload size={23}/> 
+                <Link className="flex items-end border-2 w-fit px-3 py-1 rounded-full font-semibold bg-sky-50 text-black gap-1 text-lg hover:bg-slate-300 transition" href="/cv_Arthur_Rocha.pdf" download="cv_arthur_rocha.pdf" target="_blank"><BiDownload size={23}/> 
                   Baixar CV
                 </Link>
                 <Link href="https://github.com/zinfex" target="_blank" className="flex items-center w-fit px-3 py-1 rounded-full font-semibold hover:bg-sky-50 text-white hover:text-black gap-1 transition text-lg">
@@ -111,6 +112,8 @@ export default function Home() {
         </section>
 
         <Sobre />
+
+        <Comunidade />
 
         <Projects />
 
