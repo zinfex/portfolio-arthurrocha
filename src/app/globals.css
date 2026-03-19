@@ -83,3 +83,17 @@ body {
 .code span{
   font-size: 14px;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #091d47;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0191cf;
+  border-radius: 10px;
+}

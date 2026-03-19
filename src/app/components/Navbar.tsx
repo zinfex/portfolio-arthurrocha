@@ -1,7 +1,5 @@
-import Link from "next/link";
 import { BsHouse } from "react-icons/bs";
 import { FaRegUser, FaRegEnvelopeOpen } from "react-icons/fa";
-import { GrArticle } from "react-icons/gr";
 import { RiNotificationBadgeLine } from "react-icons/ri";
 
 export default function Navbar() {
