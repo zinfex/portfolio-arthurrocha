@@ -36,7 +36,7 @@ export default function Home() {
       {/* Glow backgrounds */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -left-32 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl" />
-        <div className="absolute top-40 -right-24 h-96 w-96 rounded-full bg-blue-600/25 blur-3xl" />
+        <div className="absolute top-40 -right-24 h-96 w-96 rounded-full bg-blue-600/25 blur-3xl bgball" />
         
         {/* Bottom blurs */}
         <div className="absolute bottom-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-sky-600/10 blur-[120px]" />
@@ -63,7 +63,7 @@ export default function Home() {
               </p>
 
               <div className="mt-5 flex item-center gap-5 mb-12">
-                <Link className="flex items-end border-2 w-fit px-3 py-1 rounded-full font-semibold bg-sky-50 text-black gap-1 text-lg hover:bg-slate-300 transition" href="/cv_Arthur_Rocha.pdf" download="cv_arthur_rocha.pdf" target="_blank"><BiDownload size={23}/> 
+                <Link className="flex items-end border-2 w-fit px-4 py-[6px] rounded-full bg-sky-50 text-black gap-1 text-lg hover:bg-slate-300  hovertransition font-bold" href="/cv_Arthur_Rocha.pdf" download="cv_arthur_rocha.pdf" target="_blank"><BiDownload size={23}/> 
                   Baixar CV
                 </Link>
                 <Link href="https://github.com/zinfex" target="_blank" className="flex items-center w-fit px-3 py-1 rounded-full font-semibold hover:bg-sky-50 text-white hover:text-black gap-1 transition text-lg">

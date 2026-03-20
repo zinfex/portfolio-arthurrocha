@@ -12,7 +12,7 @@ export default function Projects() {
       techs: ["Next.js", "TypeScript", "Supabase"],
       imageUrl: "/projects/taskmind.jpeg",
       link: "https://github.com/zinfex/taskmind", 
-      deploy: "https://taksmind.netlify.app/hoje"
+      deploy: "https://taksmind.netlify.app/"
     },
     {
       title: "Askwise",
@@ -49,9 +49,9 @@ export default function Projects() {
       {/* Grid de projetos */}
       <div className="grid gap-6 md:gap-7 md:grid-cols-3">
         {projects.map((project, index) => (
-          <Link key={index} href={project.deploy} target="_blank">
+          <Link key={index} href={project.deploy} target="_blank"  >
             <article
-              className="group rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden hover:border-sky-500/70 transition-transform  duration-300 ease-in-out hover:-translate-y-3 flex flex-col justify-end"
+              className="group rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden hover:border-sky-500/70 transition-transform  duration-300 ease-in-out hover:-translate-y-3 flex flex-col justify-end" 
             >
               {/* Imagem no topo */}
               <img

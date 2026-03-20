@@ -8,8 +8,8 @@ export default function Navbar() {
       <img src="picture.png" className="hidden md:block w-15 fixed left-6 top-6 border-2 border-sky-800/60 rounded-full" alt="picture" />
 
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
-        <div className="flex items-center gap-4 p-2 rounded-full border-1 border-blue-400/40
-        bg-[#16223c]/60 backdrop-blur-md shadow-lg">
+        <div className="flex items-center gap-4 p-2 rounded-full border border-white/8 
+        bg-[#16223c]/60 backdrop-blur-md shadow-lg bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.015))] text-center shadow-[0_24px_70px_rgba(0,0,0,0.2)] ">
 
           <a href="#" className="flex items-center gap-2 px-3 py-2 rounded-full text-slate-400 hover:text-white transition-colors hover:bg-white/5">
             <BsHouse className="text-md text-[23px] md:text-[20px]" />

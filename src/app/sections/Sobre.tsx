@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { MdLocationOn } from "react-icons/md";
 import { HiOutlineSparkles } from "react-icons/hi2";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 type NavItem = { id: string; label: string };
 
@@ -23,6 +23,18 @@ function scrollToId(id: string) {
 export default function Sobre() {
   const [activeId, setActiveId] = useState<string>(NAV_ITEMS[0].id);
   const [visible, setVisible] = useState<Record<string, boolean>>({});
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end end"]
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   const timeline = useMemo(
     () => [
@@ -76,7 +88,7 @@ export default function Sobre() {
       {
         id: "cert-1",
         img: "/certificacoes/curso1.jpg",
-        name: "Curso presencial Desenvolvedor Fullstack",
+        name: "Curso presencial Desenvolvedor Web",
         institution: "iwtraining educação avançada",
         badge: "Fullstack",
       },
@@ -89,16 +101,23 @@ export default function Sobre() {
       },
       {
         id: "cert-3",
+        img: "/certificacoes/digital.jpg",
+        name: "Avanço na carreira Fullstack",
+        institution: "Digital College - Fortaleza, CE",
+        badge: "Fullstack",
+      },
+      {
+        id: "cert-4",
         img: "/certificacoes/javascript.jpg",
         name: "Programming Using JavaScript",
         institution: "Curso em Vídeo",
         badge: "Javascript 40h",
       },
       {
-        id: "cert-4",
+        id: "cert-5",
         img: "/certificacoes/aws.jpg",
-        name: "Desenvolvimento com Gemini IA",
-        institution: "Alura",
+        name: "Desenvolvimento com IA",
+        institution: "AWS Training",
         badge: "LLM",
       },
     ],
@@ -408,45 +427,85 @@ export default function Sobre() {
             </section>
 
             {/* Certificações */}
-              <section  id="certificacoes" className="scroll-mt-28 space-y-4">
-                <h3 className="text-lg md:text-xl font-semibold text-sky-400">
-                  | Certificações
-                </h3>
-
-                <div className="grid gap-4 md:grid-cols-2 w-full">
-                  {certifications.map((c) => (
-                    <div
-                      key={c.id}
-                      data-reveal={c.id}
-                      className={[
-                        visible[c.id]
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 translate-y-4",
-                        "transition-all duration-700 ease-out",
-                        "rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-5",
-                      ].join(" ")}
-                    >
-                      <div className="flex flex-col justify-between gap-3 ">
-                        <img src={c.img} alt="curso" className="rounded-xl h-55 w-auto" />
-                        <div className="flex flex-col">
-                          
-                          <div className="text-sm font-semibold text-slate-100">
-                            {c.name}
-                          </div>
-                          <div className="mt-2 text-sm text-slate-400 flex justify-between">
-                            {c.institution}
-
-                            <span className="rounded-full bg-sky-500/10 border border-sky-500/20 px-3 py-1 text-xs text-sky-200 w-fit">
-                              {c.badge}
-                            </span>
-                          </div>
-                        </div>  
-                      </div>
-                      
-                    </div>
-                  ))}
+            <section id="certificacoes" className="scroll-mt-28 space-y-8" ref={containerRef}>
+              <div className="sticky top-40 overflow-hidden py-10">
+                <div className="mb-8">
+                  <h3 className="text-lg md:text-xl font-semibold text-sky-400">
+                    | Certificações
+                  </h3>
+                  <p className="text-sm text-slate-400 mt-1">
+                    Role para navegar pelos certificados
+                  </p>
                 </div>
-              </section>
+
+                {/* Container do Carrossel */}
+                <div className="relative h-[450px]">
+                  
+                  <motion.div
+                    style={{ 
+                      x: useTransform(smoothProgress, [0, 1], ["0%", "-100%"]),
+                      translateX: useTransform(smoothProgress, [0, 1], ["0px", "400px"]) 
+                    }}
+                    className="flex gap-6 absolute left-0"
+                  >
+                    <div className="w-[100px] md:w-[600px] flex-shrink-0" />
+                    {certifications.map((c, index) => (
+                      <motion.div
+                        key={c.id}
+                        style={{
+                          opacity: useTransform(
+                            smoothProgress,
+                            [index * 0.2, index * 0.2 + 0.1, index * 0.2 + 0.2, index * 0.2 + 0.3],
+                            [0.4, 1, 1, 0.4]
+                          ),
+                          scale: useTransform(
+                            smoothProgress,
+                            [index * 0.2, index * 0.2 + 0.1, index * 0.2 + 0.2, index * 0.2 + 0.3],
+                            [0.9, 1, 1, 0.9]
+                          ),
+                        }}
+                        className="flex-shrink-0 w-[300px] md:w-[450px] rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-6 shadow-xl"
+                      >
+                        <div className="flex flex-col gap-4">
+                          <div className="relative overflow-hidden rounded-xl h-48 md:h-64">
+                            <img 
+                              src={c.img} 
+                              alt={c.name} 
+                              className="w-full h-full object-cover" 
+                            />
+                          </div>
+                          <div className="space-y-3">
+                            <div className="text-base md:text-lg font-bold text-slate-100 leading-tight">
+                              {c.name}
+                            </div>
+                            <div className="flex flex-col gap-2">
+                              <div className="text-sm text-slate-400 font-medium flex justify-between">
+                                {c.institution}
+
+                                <span className="rounded-full bg-sky-500/10 border border-sky-500/20 px-3 py-1 text-xs text-sky-200 w-fit">
+                                  {c.badge}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                    </motion.div>
+                </div>
+
+                {/* Barra de progresso visual */}
+                <div className="mt-8 h-1 w-full bg-slate-800 rounded-full overflow-hidden max-w-md">
+                  <motion.div 
+                    className="h-full bg-sky-500"
+                    style={{ scaleX: smoothProgress, transformOrigin: "0%" }}
+                  />
+                </div>
+              </div>
+              
+              {/* Espaçador para criar a área de scroll (height proporcional ao número de itens) */}
+              <div className="h-[200vh]" />
+            </section>
 
             {/* Expertise Técnica */}
             <section id="expertise" className="scroll-mt-28">
