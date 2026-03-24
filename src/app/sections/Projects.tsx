@@ -51,7 +51,7 @@ export default function Projects() {
         {projects.map((project, index) => (
           <Link key={index} href={project.deploy} target="_blank"  >
             <article
-              className="group rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden hover:border-sky-500/70 transition-transform  duration-300 ease-in-out hover:-translate-y-3 flex flex-col justify-end" 
+              className="group rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden hover:border-sky-500/70 transition-transform  duration-300 ease-in-out hover:-translate-y-3 flex flex-col justify-end hover:shadow-2xl hover:shadow-sky-900/40" 
             >
               {/* Imagem no topo */}
               <img

@@ -179,17 +179,16 @@ export default function Sobre() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const intersecting = entries
-          .filter((e) => e.isIntersecting)
-          .sort(
-            (a, b) => (b.intersectionRect.height ?? 0) - (a.intersectionRect.height ?? 0),
-          );
-        const top = intersecting[0];
-        if (!top?.target) return;
-        const id = (top.target as HTMLElement).id;
-        if (id) setActiveId(id);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
       },
-      { rootMargin: "-20% 0px -70% 0px", threshold: [0, 0.15, 0.25, 0.4] },
+      { 
+        rootMargin: "-30% 0px -65% 0px", 
+        threshold: 0 
+      },
     );
 
     sectionEls.forEach((el) => observer.observe(el));
@@ -325,7 +324,7 @@ export default function Sobre() {
             </header>
 
             {/* Introdução */}
-            <section id="introducao" className="space-y-4 scroll-mt-28">
+            <section id="introducao" className="space-y-4 scroll-mt-44">
               <div
                 data-reveal="intro"
                 className={[
@@ -346,7 +345,7 @@ export default function Sobre() {
 
 
             {/* Experiência*/}
-            <section id="experiencia" className="scroll-mt-58" > 
+            <section id="experiencia" className="scroll-mt-44" > 
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="text-lg md:text-xl font-semibold text-sky-400">
@@ -427,7 +426,7 @@ export default function Sobre() {
             </section>
 
             {/* Certificações */}
-            <section id="certificacoes" className="scroll-mt-28 space-y-8" ref={containerRef}>
+            <section id="certificacoes" className="scroll-mt-44 space-y-8" ref={containerRef}>
               <div className="sticky top-40 overflow-hidden py-10">
                 <div className="mb-8">
                   <h3 className="text-lg md:text-xl font-semibold text-sky-400">
@@ -508,7 +507,7 @@ export default function Sobre() {
             </section>
 
             {/* Expertise Técnica */}
-            <section id="expertise" className="scroll-mt-28">
+            <section id="expertise" className="scroll-mt-44 pb-32">
               <div className="space-y-5">
                 <h3 className="text-lg md:text-xl font-semibold text-sky-400">
                   | Expertise Técnica
