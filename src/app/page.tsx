@@ -52,8 +52,8 @@ export default function Home() {
           {/* Left side - intro */}
           <div className="flex-1 space-y-6 justify-center">
             <div className="space-y-2">
-            <img src="avatar.png" className="w-20 rounded-full" alt="avatar" />
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+            <img src="avatar.jpg" className="w-20 rounded-full" alt="avatar" />
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight arthurtext">
               Arthur Rocha<span className="cursor">|</span>
             </h1>
               <p className="text-base md:text-lg text-slate-300 max-w-xl">

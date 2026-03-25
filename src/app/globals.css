@@ -120,3 +120,7 @@ body {
   background: #0191cf;
   border-radius: 10px;
 }
+
+.arthurtext {
+  text-shadow: 0 0 20px rgba(68, 136, 252, 0.624);
+}

@@ -2,7 +2,17 @@
 
 import { useEffect, useMemo, useState, useRef } from "react";
 import { MdLocationOn } from "react-icons/md";
-import { HiOutlineSparkles } from "react-icons/hi2";
+import { HiOutlineSparkles, HiCheckBadge, HiDocumentMagnifyingGlass, HiQueueList } from "react-icons/hi2";
+import { 
+  SiTypescript, SiJavascript, SiPython, SiReact, SiNextdotjs, 
+  SiExpress, SiPostgresql, SiMongodb, SiSupabase, SiMysql, 
+  SiRedis, SiJest, SiSwagger, SiGithubactions, SiDocker, 
+  SiPostman,
+  SiNodedotjs,
+  SiN8N,
+  SiTailwindcss
+} from "react-icons/si";
+import { TbApi, TbWebhook } from "react-icons/tb";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 type NavItem = { id: string; label: string };
@@ -38,11 +48,12 @@ export default function Sobre() {
 
   const timeline = useMemo(
     () => [
-    {
+      {
         id: "exp-1",
-        company: "Freelancer de Projetos    ",
+        company: "Freelancer de Projetos",
         role: "Full Stack Developer",
         period: "2026 | Atualmente",
+        image: "/exp/085_digital_cover.jpg",
         bullets: [
             "Desenvolvimento de aplicações SAAS.",
             "N8N: Manutenção e criação de automações e agentes de IA.",
@@ -53,8 +64,9 @@ export default function Sobre() {
       {
         id: "exp-2",
         company: "Chat2Desk Brasil",
-        role: "Analista de Automações com IA | Frontend",
+        role: "Desenvolvedor Fullstack & Automações com IA - Pleno",
         period: "2025 | Outubro - Dezembro",
+        image: "/exp/chat2desk_brasil_cover.jpg",
         bullets: [
           "Responsável por atendimento de Tickets e melhorias.",
           "Manutenção de automações e páginas da empresa com React, Node.js e N8N",
@@ -66,9 +78,10 @@ export default function Sobre() {
       },
       {
         id: "exp-3",
-        company: "085 Digital",
-        role: "Full Stack Developer",
+        company: "SpeedCloud",
+        role: "Full Stack Developer - Junior",
         period: "2024 | Janeiro - 2025 | Outubro",
+        image: "/exp/speed_cloud_cover.jpg",
         bullets: [
           "Responsável por criações e atualizações de aplicações SAAS da empresa.",
           "Criação de APIs de marketing, integradas a um banco de dados e CRM.",
@@ -128,27 +141,61 @@ export default function Sobre() {
     () => [
       {
         title: "Linguagens",
-        items: ["TypeScript", "JavaScript", "Python"],
+        items: [
+          { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+          { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+          { name: "Python", icon: SiPython, color: "#3776AB" },
+        ],
       },
       {
-        title: "Frameworks",
-        items: ["React", "Next.js", "Express", "Framework"],
+        title: "Frontend",
+        items: [
+          { name: "React", icon: SiReact, color: "#61DAFB" },
+          { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
+          { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38B2AC" },
+        ],
+      },
+      {
+        title: "Backend",
+        items: [
+          { name: "Node.js", icon: SiNodedotjs, color: "#68A063" },
+          { name: "Express", icon: SiExpress, color: "#FFFFFF" },
+          { name: "N8N", icon: SiN8N, color: "#da32b3" },
+        ],
       },
       {
         title: "Banco de Dados",
-        items: ["PostgreSQL", "MongoDB", "Supabase", "MySQL"],
+        items: [
+          { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+          { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+          { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
+          { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+          { name: "Redis", icon: SiRedis, color: "#FF4438" },
+        ],
       },
       {
         title: "Testes & Qualidade",
-        items: ["Jest", "Boas práticas", "Revisões", "Swagger"],
+        items: [
+          { name: "Jest", icon: SiJest, color: "#C21325" },
+          { name: "Boas práticas", icon: HiCheckBadge, color: "#10B981" },
+          { name: "Revisões", icon: HiDocumentMagnifyingGlass, color: "#F59E0B" },
+          { name: "Swagger", icon: SiSwagger, color: "#85EA2D" },
+        ],
       },
       {
         title: "CI/CD & DevOps",
-        items: ["GitHub Actions", "Docker"],
+        items: [
+          { name: "GitHub Actions", icon: SiGithubactions, color: "#2088FF" },
+          { name: "Docker", icon: SiDocker, color: "#2496ED" },
+        ],
       },
       {
         title: "Integrações",
-        items: ["Webhooks", "APIs REST", "Queues"],
+        items: [
+          { name: "Webhooks", icon: TbWebhook, color: "#FFFFFF" },
+          { name: "APIs REST", icon: TbApi, color: "#FFFFFF" },
+          { name: "Queues", icon: HiQueueList, color: "#FFFFFF" },
+        ],
       },
     ],
     [],
@@ -378,44 +425,57 @@ export default function Sobre() {
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-4",
                           "transition-all duration-700 ease-out",
-                          "rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-5",
+                          "rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-5 relative overflow-hidden",
                         ].join(" ")}
                       >
-                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
-                          <div className="space-y-1">
-                            <div className="text-sm uppercase tracking-wide text-slate-400">
-                              {item.company}
-                            </div>
-                            <div className="text-lg font-semibold text-slate-100">
-                              {item.role}
-                            </div>
-                            <div className="text-sm text-slate-400">
-                              {item.period}
+                        {/* Background Image with Overlay */}
+                        <div 
+                          className="absolute inset-0 z-0 opacity-15 transition-opacity duration-500"
+                          style={{
+                            backgroundImage: `url(${item.image})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: '27% center',
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 to-slate-900/40 z-0" />
+
+                        <div className="relative z-10">
+                          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+                            <div className="space-y-1">
+                              <div className="text-sm uppercase tracking-wide text-slate-400">
+                                {item.company}
+                              </div>
+                              <div className="text-lg font-semibold text-slate-100">
+                                {item.role}
+                              </div>
+                              <div className="text-sm text-slate-400">
+                                {item.period}
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="mt-4">
-                          <ul className="space-y-2 text-slate-300">
-                            {item.bullets.map((b) => (
-                              <li key={b} className="flex gap-3">
-                                <span className="mt-1 h-2 w-2 rounded-full bg-slate-400/60" />
-                                <span>{b}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                          <div className="mt-4">
+                            <ul className="space-y-2 text-slate-300">
+                              {item.bullets.map((b) => (
+                                <li key={b} className="flex gap-3">
+                                  <span className="mt-1 h-2 w-2 rounded-full bg-slate-400/60" />
+                                  <span>{b}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
 
-                        <div className="mt-4 grid gap-3 md:grid-cols-[auto_1fr] items-center">
-                          <div className="flex flex-wrap gap-2">
-                            {item.tech.map((t) => (
-                              <span
-                                key={t}
-                                className="rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs text-slate-200"
-                              >
-                                {t}
-                              </span>
-                            ))}
+                          <div className="mt-4 grid gap-3 md:grid-cols-[auto_1fr] items-center">
+                            <div className="flex flex-wrap gap-2">
+                              {item.tech.map((t) => (
+                                <span
+                                  key={t}
+                                  className="rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs text-slate-200"
+                                >
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -513,7 +573,7 @@ export default function Sobre() {
                   | Expertise Técnica
                 </h3>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-10 md:grid-cols-3">
                   {expertise.map((cat) => (
                     <div
                       key={cat.title}
@@ -531,10 +591,11 @@ export default function Sobre() {
                       <div className="mt-3 flex flex-wrap gap-2">
                         {cat.items.map((t) => (
                           <span
-                            key={t}
-                            className="rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs text-slate-200"
+                            key={t.name}
+                            className="flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs text-slate-200"
                           >
-                            {t}
+                            <t.icon style={{ color: t.color }} className="text-sm" />
+                            {t.name}
                           </span>
                         ))}
                       </div>
