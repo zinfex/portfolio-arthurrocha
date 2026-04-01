@@ -2,15 +2,32 @@
 
 import { useEffect, useMemo, useState, useRef } from "react";
 import { MdLocationOn } from "react-icons/md";
-import { HiOutlineSparkles, HiCheckBadge, HiDocumentMagnifyingGlass, HiQueueList } from "react-icons/hi2";
-import { 
-  SiTypescript, SiJavascript, SiPython, SiReact, SiNextdotjs, 
-  SiExpress, SiPostgresql, SiMongodb, SiSupabase, SiMysql, 
-  SiRedis, SiJest, SiSwagger, SiGithubactions, SiDocker, 
+import {
+  HiOutlineSparkles,
+  HiCheckBadge,
+  HiDocumentMagnifyingGlass,
+  HiQueueList,
+} from "react-icons/hi2";
+import {
+  SiTypescript,
+  SiJavascript,
+  SiPython,
+  SiReact,
+  SiNextdotjs,
+  SiExpress,
+  SiPostgresql,
+  SiMongodb,
+  SiSupabase,
+  SiMysql,
+  SiRedis,
+  SiJest,
+  SiSwagger,
+  SiGithubactions,
+  SiDocker,
   SiPostman,
   SiNodedotjs,
   SiN8N,
-  SiTailwindcss
+  SiTailwindcss,
 } from "react-icons/si";
 import { TbApi, TbWebhook } from "react-icons/tb";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
@@ -30,21 +47,101 @@ function scrollToId(id: string) {
   el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+interface Certification {
+  id: string;
+  img: string;
+  name: string;
+  institution: string;
+  badge: string;
+}
+
+function CertificateCardDesktop({
+  c,
+  index,
+  smoothProgress,
+}: {
+  c: Certification;
+  index: number;
+  smoothProgress: any;
+}) {
+  const opacity = useTransform(
+    smoothProgress,
+    [index * 0.2, index * 0.2 + 0.1, index * 0.2 + 0.2, index * 0.2 + 0.3],
+    [0.4, 1, 1, 0.4],
+  );
+  const scale = useTransform(
+    smoothProgress,
+    [index * 0.2, index * 0.2 + 0.1, index * 0.2 + 0.2, index * 0.2 + 0.3],
+    [0.9, 1, 1, 0.9],
+  );
+
+  return (
+    <motion.div
+      key={c.id}
+      style={{
+        opacity,
+        scale,
+      }}
+      className="flex-shrink-0 w-[450px] rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-6 shadow-xl"
+    >
+      <div className="flex flex-col gap-4">
+        <div className="relative overflow-hidden rounded-xl h-48">
+          <img
+            src={c.img}
+            alt={c.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <div className="text-base font-bold text-slate-100 leading-tight">
+            {c.name}
+          </div>
+          <div className="flex flex-col gap-2">
+            <div className="text-sm text-slate-400 font-medium flex justify-between">
+              {c.institution}
+
+              <span className="rounded-full bg-sky-500/10 border border-sky-500/20 px-3 py-1 text-xs text-sky-200 w-fit">
+                {c.badge}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Sobre() {
   const [activeId, setActiveId] = useState<string>(NAV_ITEMS[0].id);
   const [visible, setVisible] = useState<Record<string, boolean>>({});
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const constraintsRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end end"]
+    offset: ["start end", "end end"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const xTransform = useTransform(smoothProgress, [0, 1], ["0%", "-100%"]);
+  const translateXTransform = useTransform(
+    smoothProgress,
+    [0, 1],
+    ["0px", "400px"],
+  );
 
   const timeline = useMemo(
     () => [
@@ -55,12 +152,12 @@ export default function Sobre() {
         period: "2026 | Atualmente",
         image: "/exp/085_digital_cover.jpg",
         bullets: [
-            "Desenvolvimento de aplicações SAAS.",
-            "N8N: Manutenção e criação de automações e agentes de IA.",
-            "Páginas Next.js conectadas com Backend e Banco de Dados",
+          "Desenvolvimento de aplicações SAAS.",
+          "N8N: Manutenção e criação de automações e agentes de IA.",
+          "Páginas Next.js conectadas com Backend e Banco de Dados",
         ],
         tech: ["React", "Next.js", "Node.js", "N8N", "Typescript", "Docker"],
-        },
+      },
       {
         id: "exp-2",
         company: "Chat2Desk Brasil",
@@ -72,7 +169,7 @@ export default function Sobre() {
           "Manutenção de automações e páginas da empresa com React, Node.js e N8N",
           "Soluções com IA e arquitetura RAG",
           "Criação de Dashboards em Next.js e PostgresSQL.",
-          "API's de mensageria | Typescript & Nodejs."
+          "API's de mensageria | Typescript & Nodejs.",
         ],
         tech: ["React", "Next.js", "Node.js", "PostgreSQL", "AWS", "N8N"],
       },
@@ -88,9 +185,17 @@ export default function Sobre() {
           "Desenvolvimento de +10 landing pages em React e Next.js para campanhas de anúncios.",
           "N8N: Criação de agentes de IA e automações.",
           "Gestão de automações.",
-          "Sistemas com integração com API's de marketing."
+          "Sistemas com integração com API's de marketing.",
         ],
-        tech: ["React", "Next.js", "Node.js", "N8N", "Typescript", "Easypanel", "Docker"],
+        tech: [
+          "React",
+          "Next.js",
+          "Node.js",
+          "N8N",
+          "Typescript",
+          "Easypanel",
+          "Docker",
+        ],
       },
     ],
     [],
@@ -178,7 +283,11 @@ export default function Sobre() {
         items: [
           { name: "Jest", icon: SiJest, color: "#C21325" },
           { name: "Boas práticas", icon: HiCheckBadge, color: "#10B981" },
-          { name: "Revisões", icon: HiDocumentMagnifyingGlass, color: "#F59E0B" },
+          {
+            name: "Revisões",
+            icon: HiDocumentMagnifyingGlass,
+            color: "#F59E0B",
+          },
           { name: "Swagger", icon: SiSwagger, color: "#85EA2D" },
         ],
       },
@@ -232,9 +341,9 @@ export default function Sobre() {
           }
         });
       },
-      { 
-        rootMargin: "-30% 0px -65% 0px", 
-        threshold: 0 
+      {
+        rootMargin: "-30% 0px -65% 0px",
+        threshold: 0,
       },
     );
 
@@ -354,20 +463,23 @@ export default function Sobre() {
           {/* Content */}
           <div className="space-y-10">
             {/* Header */}
-            <header className="space-y-4">
-              <div className="space-y-3">
-                <div className="flex flex-wrap items-center gap-3">
+            <header className="space-y-4 flex flex-col ">
+                <div className="flex flex-col  lg:items-start lg:flex-wrap  items-center gap-3">
                   <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
                     Quem sou eu?
                   </h2>
+                  <img
+                    src="/trabalho.jpeg"
+                    alt="Foto de perfil"
+                    className="rounded-4xl w-full block md:hidden  max-w-[300px] mx-auto"
+                  />
                 </div>
-                <p className="text-slate-300 text-base md:text-lg">
+                <p className="text-slate-300 text-base md:text-lg ">
                   Desenvolvedor{" "}
                   <span className="font-semibold text-sky-400">
                     Full Stack & Analista de Automações com IA
                   </span>
                 </p>
-              </div>
             </header>
 
             {/* Introdução */}
@@ -386,13 +498,11 @@ export default function Sobre() {
                   é transformar requisitos em interfaces claras, arquiteturas
                   sustentáveis e sistemas que funcionam bem em produção.
                 </p>
-                
               </div>
             </section>
 
-
             {/* Experiência*/}
-            <section id="experiencia" className="scroll-mt-44" > 
+            <section id="experiencia" className="scroll-mt-44">
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="text-lg md:text-xl font-semibold text-sky-400">
@@ -429,12 +539,12 @@ export default function Sobre() {
                         ].join(" ")}
                       >
                         {/* Background Image with Overlay */}
-                        <div 
+                        <div
                           className="absolute inset-0 z-0 opacity-15 transition-opacity duration-500"
                           style={{
                             backgroundImage: `url(${item.image})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: '27% center',
+                            backgroundSize: "cover",
+                            backgroundPosition: "27% center",
                           }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 to-slate-900/40 z-0" />
@@ -486,88 +596,112 @@ export default function Sobre() {
             </section>
 
             {/* Certificações */}
-            <section id="certificacoes" className="scroll-mt-44 space-y-8" ref={containerRef}>
-              <div className="sticky top-40 overflow-hidden py-10">
+            <section
+              id="certificacoes"
+              className="scroll-mt-44 space-y-8"
+              ref={containerRef}
+            >
+              <div
+                className={
+                  isMobile ? "space-y-8" : "sticky top-40 overflow-hidden py-10"
+                }
+              >
                 <div className="mb-8">
                   <h3 className="text-lg md:text-xl font-semibold text-sky-400">
                     | Certificações
                   </h3>
                   <p className="text-sm text-slate-400 mt-1">
-                    Role para navegar pelos certificados
+                    {isMobile
+                      ? "Arraste para navegar pelos certificados"
+                      : "Role para navegar pelos certificados"}
                   </p>
                 </div>
 
-                {/* Container do Carrossel */}
-                <div className="relative h-[450px]">
-                  
-                  <motion.div
-                    style={{ 
-                      x: useTransform(smoothProgress, [0, 1], ["0%", "-100%"]),
-                      translateX: useTransform(smoothProgress, [0, 1], ["0px", "400px"]) 
-                    }}
-                    className="flex gap-6 absolute left-0"
-                  >
-                    <div className="w-[100px] md:w-[600px] flex-shrink-0" />
-                    {certifications.map((c, index) => (
-                      <motion.div
-                        key={c.id}
-                        style={{
-                          opacity: useTransform(
-                            smoothProgress,
-                            [index * 0.2, index * 0.2 + 0.1, index * 0.2 + 0.2, index * 0.2 + 0.3],
-                            [0.4, 1, 1, 0.4]
-                          ),
-                          scale: useTransform(
-                            smoothProgress,
-                            [index * 0.2, index * 0.2 + 0.1, index * 0.2 + 0.2, index * 0.2 + 0.3],
-                            [0.9, 1, 1, 0.9]
-                          ),
-                        }}
-                        className="flex-shrink-0 w-[300px] md:w-[450px] rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-6 shadow-xl"
-                      >
-                        <div className="flex flex-col gap-4">
-                          <div className="relative overflow-hidden rounded-xl h-48 md:h-64">
-                            <img 
-                              src={c.img} 
-                              alt={c.name} 
-                              className="w-full h-full object-cover" 
-                            />
-                          </div>
-                          <div className="space-y-3">
-                            <div className="text-base md:text-lg font-bold text-slate-100 leading-tight">
-                              {c.name}
+                {isMobile ? (
+                  /* Mobile: Draggable Carousel */
+                  <div ref={constraintsRef} className="absolute overflow-hidden w-full">
+                    <motion.div
+                      drag="x"
+                      dragConstraints={constraintsRef}
+                      className="flex gap-4 cursor-grab active:cursor-grabbing w-max pr-10"
+                      style={{ touchAction: "pan-y" }}
+                    >
+                      {certifications.map((c) => (
+                        <div
+                          key={c.id}
+                          className="flex-shrink-0 w-[250px] rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md p-4 shadow-xl"
+                        >
+                          <div className="flex flex-col gap-3">
+                            <div className="relative overflow-hidden rounded-xl h-32">
+                              <img
+                                src={c.img}
+                                alt={c.name}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
-                            <div className="flex flex-col gap-2">
-                              <div className="text-sm text-slate-400 font-medium flex justify-between">
-                                {c.institution}
+                            <div className="space-y-2">
+                              <div className="text-sm font-bold text-slate-100 leading-tight">
+                                {c.name}
+                              </div>
+                              <div className="flex flex-col gap-1">
+                                <div className="text-xs text-slate-400 font-medium flex justify-between">
+                                  {c.institution}
 
-                                <span className="rounded-full bg-sky-500/10 border border-sky-500/20 px-3 py-1 text-xs text-sky-200 w-fit">
-                                  {c.badge}
-                                </span>
+                                  <span className="rounded-full bg-sky-500/10 border border-sky-500/20 px-2 py-1 text-xs text-sky-200 w-fit">
+                                    {c.badge}
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </motion.div>
-                    ))}
+                      ))}
                     </motion.div>
-                </div>
+                  </div>
+                ) : (
+                  /* Desktop: Scroll-based Carousel */
+                  <>
+                    <div className="relative h-[450px]">
+                      <motion.div
+                        style={{
+                          x: xTransform,
+                          translateX: translateXTransform,
+                        }}
+                        className="flex gap-6 absolute left-0"
+                      >
+                        <div className="w-[100px] flex-shrink-0" />
+                        <div className="w-[100px] flex-shrink-0" />
+                        {certifications.map((c, index) => (
+                          <CertificateCardDesktop
+                            key={c.id}
+                            c={c}
+                            index={index}
+                            smoothProgress={smoothProgress}
+                          />
+                        ))}
+                      </motion.div>
+                    </div>
 
-                {/* Barra de progresso visual */}
-                <div className="mt-8 h-1 w-full bg-slate-800 rounded-full overflow-hidden max-w-md">
-                  <motion.div 
-                    className="h-full bg-sky-500"
-                    style={{ scaleX: smoothProgress, transformOrigin: "0%" }}
-                  />
-                </div>
+                    {/* Barra de progresso visual */}
+                    <div className="mt-8 h-1 w-full bg-slate-800 rounded-full overflow-hidden max-w-md">
+                      <motion.div
+                        className="h-full bg-sky-500"
+                        style={{
+                          scaleX: smoothProgress,
+                          transformOrigin: "0%",
+                        }}
+                      />
+                    </div>
+                  </>
+                )}
               </div>
-              
+
               {/* Espaçador para criar a área de scroll (height proporcional ao número de itens) */}
-              <div className="h-[200vh]" />
+              {!isMobile && <div className="h-[200vh]" />}
             </section>
 
             {/* Expertise Técnica */}
-            <section id="expertise" className="scroll-mt-44 pb-32">
+            <section id="expertise" className="scroll-mt-44 pb-3 mt-90 lg:mt-0">
               <div className="space-y-5">
                 <h3 className="text-lg md:text-xl font-semibold text-sky-400">
                   | Expertise Técnica
@@ -594,7 +728,10 @@ export default function Sobre() {
                             key={t.name}
                             className="flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs text-slate-200"
                           >
-                            <t.icon style={{ color: t.color }} className="text-sm" />
+                            <t.icon
+                              style={{ color: t.color }}
+                              className="text-sm"
+                            />
                             {t.name}
                           </span>
                         ))}

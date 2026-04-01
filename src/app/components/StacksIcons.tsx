@@ -20,7 +20,7 @@ import {
   
   export default function StackIcons() {
     return (
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap justify-center lg:justify-start mt-8">
         {techs.map((tech, index) => {
           const Icon = tech.icon;
           return (
